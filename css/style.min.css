@@ -523,5 +523,5 @@ div#conf-load-info {
 
   #display-distance{
     color: #000000;
-;
+    z-index: 1000;
 }
