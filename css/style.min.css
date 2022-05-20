@@ -1,0 +1,522 @@
+@font-face {
+  font-family: "Quicksand", sans-serif;
+  src: url("/fonts/Quicksand-Regular.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Quicksand", sans-serif;
+  src: url("/fonts/Quicksand-Light.otf");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Quicksand", sans-serif;
+  src: url("/fonts/Quicksand-Bold.otf");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ubuntu', sans-serif;
+    src: url("/fonts/Ubuntu-Regular.ttf");
+  }
+
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #1a1c21;
+}
+
+canvas {
+    height: 83.5vh;
+    width: 80vw;
+    cursor: grab;
+    position: absolute;
+}
+
+canvas:active {
+  cursor: grabbing;
+}
+
+header {
+    font-family: 'Ubuntu', sans-serif;
+    padding: 1.2em 4em;
+    background: #1a1c21;
+    text-transform: uppercase;
+    font-weight: 500;
+    vertical-align: middle;
+}
+
+main {
+  height: 100%;
+  width: 100vw;
+  position: relative;
+}
+
+.grid {
+  height: calc(100% - 6em);
+  position: relative;
+  display: flex;
+}
+
+section.spin-grid {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-gap: 1em;
+  overflow: hidden;
+}
+
+section.spin-grid .sidebar-grid__toolbar {
+  grid-column: 4;
+  min-height: 1em;
+}
+
+section.spin-grid .sidebar-grid__toolbar {
+  grid-row: 10;
+  color: #fff;
+  min-width: 23vw;
+}
+
+section {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+section > div {
+  background: #272a32;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  min-width: 10em;
+}
+
+section .__content {
+  position: relative;
+  width: inherit;
+  height: inherit;
+}
+
+section .__content textarea {
+  width: calc(100% - 4em);
+  height: calc(100% - 4em);
+  padding: 2em;
+  background: transparent;
+  color: #f3f3f3;
+  border: none;
+  resize: none;
+  outline: none;
+  font-size: 0.9em;
+  transition: 0.2s;
+  font-family: monospace;
+}
+
+section .__content textarea:focus {
+  box-shadow: inset 0px 0px 0px 2px #000000;
+}
+
+.sidebar-grid__import:after {
+  content: " = ";
+  color: #1c2024;
+  position: absolute;
+  font-size: 1.25em;
+  bottom: -0.95em;
+  width: 1em;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+form[name="sci-calc"] {
+  padding: 1em 1em 0;
+}
+
+input#display {
+  width: calc(100% - 5em);
+  padding: 1em 2em;
+  text-align: right;
+  border: none;
+  background: #353b44;
+  border-radius: 3px;
+  margin: 0.5em;
+  color: #e8e8e9;
+  font-family: "Quicksand", sans-serif;
+}
+
+.__head {
+  color: #d4d4d4;
+  font-size: 0.16em;
+  padding: 0.75em;
+  visibility: hidden;
+  font-family: "Quicksand", sans-serif;
+}
+
+.btn {
+  background: #353b44;
+  color: #fff;
+  padding: 1em 0;
+  font-size: 0.6em;
+  text-transform: uppercase;
+  border: 0;
+  outline: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #2a2f35;
+  box-shadow: 2px 2px 8px 2px #0000;
+}
+
+.btn.checked.is-active {
+  background: #525b69;
+}
+
+.__body {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: space-evenly;
+  font-family: "Quicksand", sans-serif;
+}
+
+.__body.col-2 > .btn {
+    width: calc(50% - 1em);
+}
+
+.__body.col-2 > input {
+  width: calc(50% - 1em);
+}
+  
+.__body.col-2 > select {
+    width: calc(50% - 1em);
+    text-align: center;
+}
+
+.__body.col-4 > .btn {
+    width: calc(25% - 1em);
+}
+
+.logo__image{
+    position: absolute;
+    background-image: url(/img/logo.png);
+    background-size: 100% auto;
+    left: 1em;
+    top: 3px;
+    width: 60px;
+    height: 60px;
+  }
+
+.logo__text {
+    display: inline-block;
+    color: #2ae2d3;
+    font-size: 30px;
+    padding-left: 20px;
+    vertical-align: middle;
+}
+
+.conf-load {
+  padding: 0 1em;
+  margin-top: 1em;
+}
+
+.conf-load .btn {
+  width: calc(100% - 5em);
+  display: block;
+  font-family: "Quicksand", sans-serif;
+  margin: 1em 0;
+  text-align: left;
+  padding: 1.5em;
+  position: relative;
+}
+
+.conf-load input {
+  display: none;
+}
+
+label span {
+  padding-left: 2em;
+}
+
+label svg {
+  position: absolute;
+  width: 1.25em;
+  transition: 0.1s;
+  top: 1.3em;
+}
+
+label svg path {
+  fill: #fff;
+}
+
+.conf-tool {
+  width: calc(100% - 3.25em);
+  display: flex;
+  padding: 0.75em 1em;
+  justify-content: space-between;
+}
+
+.conf-tool > .btn {
+  width: calc(50% - 0.5em);
+}
+
+.cssload-container {
+  position: absolute;
+  display: inline;
+  opacity: 0;
+  transition: 0.1s;
+}
+
+label svg.act {
+  opacity: 0;
+}
+
+label svg.no-act {
+  opacity: 1;
+}
+
+label.is-ready svg.act {
+  opacity: 1;
+}
+
+label.is-ready svg.no-act {
+  opacity: 0;
+}
+
+label.is-active .cssload-container {
+  opacity: 1;
+}
+
+label.is-active svg.act,
+label.is-active svg.no-act {
+  opacity: 0;
+}
+
+.cssload-speeding-wheel {
+  width: 1em;
+  height: 1em;
+  margin: 0 auto;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  animation: cssload-spin 575ms infinite linear;
+  -o-animation: cssload-spin 575ms infinite linear;
+  -ms-animation: cssload-spin 575ms infinite linear;
+  -webkit-animation: cssload-spin 575ms infinite linear;
+  -moz-animation: cssload-spin 575ms infinite linear;
+}
+
+@keyframes cssload-spin {
+  100% {
+    transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes cssload-spin {
+  100% {
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-ms-keyframes cssload-spin {
+  100% {
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes cssload-spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes cssload-spin {
+  100% {
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.conf-init {
+  display: flex;
+  font-family: "Quicksand", sans-serif;
+  width: calc(100% - 3.25em);
+  padding: 0.25em 0.75em 1em;
+  justify-content: space-between;
+  border-bottom: 1px solid #101215;
+  font-size: 0.85em;
+}
+
+.conf-init input {
+  width: 4em;
+  padding: 0.55em 0.14em 0.55em 1em;
+  text-align: right;
+  border: none;
+  background: #525c69;
+  color: #ffffff;
+  border-radius: 3px;
+  margin: 0.5em;
+  font-family: "Quicksand", sans-serif;
+  float: right;
+}
+
+.conf-init span {
+  top: 1.15em;
+  position: relative;
+  color: #89939e;
+  left: 0.55em;
+}
+
+.conf-init .__text {
+  width: 100%;
+}
+
+div#conf-load-info {
+  color: #89939e;
+  margin-bottom: 1em;
+  font-family: "Quicksand", sans-serif;
+  font-size: 0.75em;
+  left: 0.2em;
+  position: relative;
+}
+
+.dragover label {
+  border: 2px dotted #989898;
+  background: #525d69;
+}
+
+.conf-tool.row-2 {
+  padding-top: 0;
+}
+
+.conf-tool.row-2 button {
+  width: 100%;
+}
+
+.menu {
+    background-color: transparent;
+    position: fixed;
+    
+    top: 5px;
+    right: -100%;
+    max-width: 30%;
+    max-height: 60%;
+    padding-top: 30px;
+    transition: .4s;
+  }
+  
+  .menu.active{
+    right: 0;
+    width: 30%;
+  }
+  
+  .btn-menu {
+    background-color: transparent;
+    position: absolute;
+    right: 5px;
+    top: -65px;
+    z-index: 10;
+    width: 3rem;
+    height: 3rem;
+    border: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.6;
+    transition-delay: 0.1s;
+  }
+  
+  .btn-menu:hover {
+    opacity: 1;
+    transition: 0.2s;
+  }
+  
+  .btn-menu .line, 
+  .btn-menu .line::after,
+  .btn-menu .line::before {
+    display: inline-block;
+    background-color: #fff;
+    height: 4px;
+  }
+  
+  .btn-menu .line::after,
+  .btn-menu .line::before {
+    content: '';
+    width: 100%;
+    position: absolute;
+    left: 0;
+  }
+  
+  .btn-menu .line::before{
+    top: .75rem;
+  }
+  
+  .btn-menu .line::after{
+    
+    top: -.75rem;
+  }
+  
+  .btn-menu .line {
+    width: 80%;
+    position: relative;
+  }
+  
+  
+  form[name="display-energy-magnetization"]{
+    display: inline;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100px;
+    width: 100px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    margin-right: 400px;
+    color: #ffffff;
+  }
+  
+  #display-energy{
+    background-color: transparent;
+    border: 0;
+    font-size: 2em;
+  }
+  
+  #display-magnetization{
+    background-color: transparent;
+    border: 0;
+    font-size: 2em;
+  }
+
+  #display-xy{
+    background-color: transparent;
+    border: 0;
+    font-size: 1em;
+  }
+  
+  select{
+    background: #353b44;
+    color: #fff;
+    font-size: 0.6em;
+    text-transform: uppercase;
+    padding: 1em;
+    border: 0;
+    outline: 0;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .btn.active {
+    opacity: 60%;
+  }
