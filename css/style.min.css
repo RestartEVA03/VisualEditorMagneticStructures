@@ -520,3 +520,7 @@ div#conf-load-info {
   .btn.active {
     opacity: 60%;
   }
+
+  #display-distance{
+    font-color: black;
+}
