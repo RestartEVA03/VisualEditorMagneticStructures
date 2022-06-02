@@ -1,5 +1,5 @@
 "use strict";
-
+var minLength = [], flagCreator = 0;
 function WebGLSpins(canvas, options) {
     this._canvas = canvas;
     this._options = {};
@@ -23,11 +23,21 @@ function WebGLSpins(canvas, options) {
     this._mouseDown = false;
     this._lastMouseX = null;
     this._lastMouseY = null;
-    canvas.addEventListener('mousewheel', this._handleMouseScroll.bind(this));
-    canvas.addEventListener('DOMMouseScroll', this._handleMouseScroll.bind(this));
-    canvas.addEventListener('mousedown', this._handleMouseDown.bind(this));
-    canvas.addEventListener('mousemove', this._handleMouseMove.bind(this));
-    document.addEventListener('mouseup', this._handleMouseUp.bind(this));
+    if (flagCreator == 0) {
+        canvas.addEventListener('mousewheel', this._handleMouseScroll.bind(this));
+        canvas.addEventListener('DOMMouseScroll', this._handleMouseScroll.bind(this));
+        canvas.addEventListener('mousedown', this._handleMouseDown.bind(this));
+        canvas.addEventListener('mousemove', this._handleMouseMove.bind(this));
+        document.addEventListener('mouseup', this._handleMouseUp.bind(this));
+        flagCreator++;
+    } 
+    else {
+        canvas.removeEventListener('mousewheel', this._handleMouseScroll.bind(this));
+        canvas.removeEventListener('DOMMouseScroll', this._handleMouseScroll.bind(this));
+        canvas.removeEventListener('mousedown', this._handleMouseDown.bind(this));
+        canvas.removeEventListener('mousemove', this._handleMouseMove.bind(this));
+        document.removeEventListener('mouseup', this._handleMouseUp.bind(this));
+    }
 }
 
 WebGLSpins.colormapImplementations = {
@@ -413,7 +423,6 @@ WebGLSpins.prototype._handleMouseDown = function(event) {
     var numArrows = Math.sqrt(arrLen);
 
     var minPos;
-    var minXY;
     var camPos = this._options.cameraLocation;
     for (var i = 0; i < arrLen; i++) {
         var pos = [arr[i*3], arr[i*3+1], 0];
@@ -422,13 +431,14 @@ WebGLSpins.prototype._handleMouseDown = function(event) {
                 minPos = pos;
                 var x = i % numArrows;
                 var y = (i-x)/numArrows;
-                minXY = [x, y];
+                minLength = [x, y];
             }
         }
     }
     if (minPos !== undefined) {
-        console.log('X:', minXY[0] + 1, 'Y:', minXY[1] + 1);
+        console.log('X:', minLength[0] + 1, 'Y:', minLength[1] + 1);
     }
+    getXY( minLength[0] + 1, minLength[1] + 1);
 };
 
 WebGLSpins.prototype._handleMouseUp = function(event) {

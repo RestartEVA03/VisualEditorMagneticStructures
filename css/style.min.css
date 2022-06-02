@@ -134,6 +134,7 @@ section .__content textarea:focus {
 
 form[name="sci-calc"] {
   padding: 1em 1em 0;
+  color: #ffff;
 }
 
 input#display {
@@ -201,6 +202,10 @@ input#display {
 
 .__body.col-4 > .btn {
     width: calc(25% - 1em);
+}
+
+.__body.col-4 > #btn-swap {
+  width: calc(50% - 1em);
 }
 
 .logo__image{
@@ -352,23 +357,9 @@ label.is-active svg.no-act {
   display: flex;
   font-family: "Quicksand", sans-serif;
   width: calc(100% - 3.25em);
-  padding: 0.25em 0.75em 1em;
-  justify-content: space-between;
-  border-bottom: 1px solid #101215;
+  padding: 0.25em 0.75em 0.1em;
+  justify-content: end;
   font-size: 0.85em;
-}
-
-.conf-init input {
-  width: 4em;
-  padding: 0.55em 0.14em 0.55em 1em;
-  text-align: right;
-  border: none;
-  background: #525c69;
-  color: #ffffff;
-  border-radius: 3px;
-  margin: 0.5em;
-  font-family: "Quicksand", sans-serif;
-  float: right;
 }
 
 .conf-init span {
@@ -378,8 +369,62 @@ label.is-active svg.no-act {
   left: 0.55em;
 }
 
+.conf-init input {
+  width: 4em;
+  padding: 0.55em 0.14em 0.55em 1em;
+  position: relative;
+  text-align: right;
+  border: none;
+  background: #525c69;
+  color: #ffffff;
+  margin: 0.5em;
+  font-family: "Quicksand", sans-serif;
+  float: right;
+}
+
 .conf-init .__text {
   width: 100%;
+}
+
+.energy-option {
+  flex-direction: column;
+  position: relative;
+  color: #ffff;
+  padding: 1em 1.5em;
+  margin-right:  1.5em;
+  border-bottom: 1px solid #afb0b2;
+}
+
+.energy-option-str{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.energy-option-str input{
+  width: 3em;
+  text-align: right;
+  border: none;
+  background: #afb0b2;
+  color: #000000;
+  border-radius: 1px;
+  margin: 0.1em;
+  font-family: "Quicksand", sans-serif;
+}
+
+.energy-option-str input[type="text"]:disabled{
+  background: #afb0b2;
+  color: #646565;
+}
+
+input[type="checkbox"]{
+  margin-top: 1%;
+  margin-right: 0;
+  font-family: "Quicksand", sans-serif;
+}
+
+.energy-option-str span, label{
+position: relative;
+color: #89939e;
 }
 
 div#conf-load-info {
@@ -408,6 +453,7 @@ div#conf-load-info {
     background-color: transparent;
     position: fixed;
     
+    z-index: 10;
     top: 5px;
     right: -100%;
     max-width: 30%;
@@ -426,7 +472,7 @@ div#conf-load-info {
     position: absolute;
     right: 5px;
     top: -65px;
-    z-index: 10;
+    z-index: 100;
     width: 3rem;
     height: 3rem;
     border: 0;
@@ -476,6 +522,7 @@ div#conf-load-info {
   form[name="display-energy-magnetization"]{
     display: inline;
     position: absolute;
+    z-index: 0;
     bottom: 0;
     right: 0;
     height: 100px;
