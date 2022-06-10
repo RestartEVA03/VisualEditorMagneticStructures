@@ -268,7 +268,7 @@ label svg path {
 }
 
 .conf-tool > .btn {
-  width: 100%;
+  width: calc(100%);
 }
 
 .conf-tool > .btn-line {
