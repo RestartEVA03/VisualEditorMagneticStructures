@@ -255,7 +255,7 @@ let webglspins, iteration = 0, k, minLengthPos;
                             z = document.getElementById("ext_direction_z").value,
                             h_vect = [x,y,z], h = document.getElementById("external_magnitude_value").value;
             for (var i = 0; i < simulateObject.spinDirections.length/3; i++){
-                energy += simulateObject.vector_mult([simulateObject.spinDirections[i], simulateObject.spinDirections[i+1], simulateObject.spinDirections[i+2]],h_vect);
+                energy += simulateObject.vector_mult([simulateObject.spinDirections[i*3], simulateObject.spinDirections[i*3+1], simulateObject.spinDirections[i*3+2]],h_vect);
             }
             return h*energy;
         },

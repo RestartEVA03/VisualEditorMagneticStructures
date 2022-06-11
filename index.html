@@ -13,6 +13,7 @@
     <script src="js/simulate.js"></script>
     <script src="js/webglspins.min.js"></script>
     <script src="https://cdn.jsdelivr.net/lodash/4.10.0/lodash.js"></script>
+    <script src="js/reimg-master/reimg.js"></script>
     
 
 </head>
@@ -51,14 +52,14 @@
                         <div class="sci-calc-btn">
                             <div class="__head">Линейка</div>
                             <div class="__body col-2">
-                                <button type="button" class="btn" id="btn-ruler" title="Cохранить как PNG" onclick="getDistance()">Линейка</button>
+                                <button type="button" class="btn" id="btn-ruler" title="Расстояние между позициями двух спинов" title="Cохранить как PNG" onclick="getDistance()">Линейка</button>
                                 <input id="display-distance" name="position" maxlength="10" value="Линейка не активна" disabled/>
                             </div>
                         </div>
                         <div class="sci-calc-btn">
                             <div class="__head">Инструменты</div>
                             <div class="__body col-4">
-                                <button type="button" class="btn" id="btn-swap" title="Cохранить как PNG" onclick="swapSpin()">Перевернуть спин</button>
+                                <button type="button" class="btn" id="btn-swap" title="Изменение магнитного момента спина" onclick="swapSpin()">Перевернуть спин</button>
                                 <button type="button" class="btn check-refresh" title="Очистить" onclick="simulateObject.simulateNew(400); this.form.display.value='0.00';">Очистить</button>
                                 <button type="button" class="btn" title="Камера по умолчанию" onclick="simulateObject.updateCameraLocation()">Камера</button>
                             </div>
@@ -66,13 +67,13 @@
                         <div class="sci-calc-btn">
                             <div class="__head">Режим отображения</div>
                             <div class="__body col-2">
-                                <select id="select-colormap">
+                                <select id="select-colormap" title="Цветовая палитра">
                                     <option value="bluewhitered">bluewhitered</option>
                                     <option value="hue">Hue</option>
                                     <option value="red">Red</option>
                                     <option value="redblue">Red-Blue</option>
                                   </select>
-                                  <select id="select-rendermode">
+                                  <select id="select-rendermode" title="Режим отображения">
                                     <option value="ARROWS">Arrows</option>
                                     <option value="SURFACE">Surface</option>
                                   </select>
@@ -90,58 +91,58 @@
                     <div class="energy-option">
                         <div class="__head"></div>
                         <div class="energy-option-str">
-                            <span>mu_сoef:</span>
-                            <input id='mu_coef' maxlength="25" min = "0.1" value="0.6" type="number" step="0.1" />
+                            <span>mu_сoef</span>
+                            <input id='mu_coef' maxlength="25" min = "0.1" value="0.6" type="number" title="Коэффициент размера спина" step="0.1" />
                         </div>
 
                         <div class="__head"></div>
                         <div class="energy-option-str">
-                            <span>r_spin:</span>
-                            <input id='r_spin' maxlength="25" min = "0" value="10" onchange="simulateObject.neighbors(),simulateObject.energy()"/>
+                            <span>r_spin</span>
+                            <input id='r_spin' maxlength="25" min = "0" value="10" title="Радиус взаимодействий" type="number" onchange="simulateObject.neighbors(),simulateObject.energy()"/>
                         </div>
 
                         <div class="__head"></div>
                         <div class="energy-option-str">
                                 <input id="external_check" name="external_check" type="checkbox" onclick="external_check()">
-                                <label for="external_check">External</label>
-                                <input id='external_magnitude_value' value="0" type="text" onchange="simulateObject.energy()" disabled/>
+                                <label for="external_check">External field</label>
+                                <input id='external_magnitude_value' value="0" type="number"  title="Внешнее поле" onchange="simulateObject.energy()" disabled/>
                         </div>
 
                         <div class="__head"></div>
                         <div class="energy-option-str">
                                 <span>Direction:</span>
-                                <input id='ext_direction_x'  value="0"  type="text" onchange="simulateObject.energy()" disabled/>
-                                <input id='ext_direction_y'  value="0"  type="text" onchange="simulateObject.energy()" disabled/>
-                                <input id='ext_direction_z'  value="0"  type="text" onchange="simulateObject.energy()" disabled/>
+                                <input id='ext_direction_x'  value="0"  type="number" onchange="simulateObject.energy()" disabled/>
+                                <input id='ext_direction_y'  value="0"  type="number" onchange="simulateObject.energy()" disabled/>
+                                <input id='ext_direction_z'  value="0"  type="number" onchange="simulateObject.energy()" disabled/>
                         </div>
 
                         <div class="__head"></div>
                         <div class="energy-option-str">
                         <input id="exchange_check"  type="checkbox" onclick="exchange_check()">
                             <label for="exchange_check">Exchange</label>
-                        <input id='exchange_value' value="0" type="text" onchange="simulateObject.energy()" disabled/>
+                        <input id='exchange_value' value="0" type="number"  title="Обменное взаимодействие" onchange="simulateObject.energy()" disabled/>
                         </div>
 
                         <div class="__head"></div>
                         <div class="energy-option-str">
                                 <input id="anisotropy_check" type="checkbox" onclick="anisotropy_check()">
                                 <label for="anisotropy_check">Anisotropy</label>
-                                <input id='anisotropy_value' value="0" type="text" onchange="simulateObject.energy()" disabled/>
+                                <input id='anisotropy_value' value="0" type="number"  title="Анизотропия" onchange="simulateObject.energy()" disabled/>
                         </div>
 
                         <div class="__head"></div>
                         <div class="energy-option-str">
-                                <span>Direction of Anisotropy:</span>
-                                <input id='ansp_direction_x' value="0" type="text" onchange="simulateObject.energy()" disabled/>
-                                <input id='ansp_direction_y' value="0" type="text" onchange="simulateObject.energy()" disabled/>
-                                <input id='ansp_direction_z' value="0" type="text" onchange="simulateObject.energy()" disabled/>
+                                <span>Direction of Anisotropy</span>
+                                <input id='ansp_direction_x' value="0" type="number" onchange="simulateObject.energy()" disabled/>
+                                <input id='ansp_direction_y' value="0" type="number" onchange="simulateObject.energy()" disabled/>
+                                <input id='ansp_direction_z' value="0" type="number" onchange="simulateObject.energy()" disabled/>
                         </div>
 
                         <div class="__head"></div>
                         <div class="energy-option-str">
                                 <input id="dipol_check" name="dipol_check" type="checkbox" onclick="dipol_check()">
                                 <label for="dipol_check">Dipol-dipol</label>
-                                <input id='dipol_radius' value="1" type="text" onchange="simulateObject.energy()" disabled/>
+                                <input id='dipol_radius' value="1" type="number"  title="Диполь-дипольное взаимодействие" onchange="simulateObject.energy()" disabled/>
                         </div>
                     </div>
 

@@ -417,7 +417,7 @@ label.is-active svg.no-act {
   font-family: "Quicksand", sans-serif;
 }
 
-.energy-option-str input[type="text"]:disabled{
+.energy-option-str input[type="number"]:disabled{
   background: #afb0b2;
   color: #646565;
 }
