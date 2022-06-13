@@ -499,7 +499,7 @@ function toggleMenu(){
     menu.classList.toggle('active');
 }
 
-var flagRuller = 0;             //флаг для линейки
+var flagRuler = 0;             //флаг для линейки
 var flagSwapSpin = 0;           //флаг для поворота спина
 var arrayForDistance = [];      //массив координат для линейки
 
@@ -507,14 +507,14 @@ var arrayForDistance = [];      //массив координат для лин�
 function getDistance(){
     const button = document.getElementById('btn-ruler');
     button.classList.toggle('active');
-    if(flagRuller == 2){
+    if(flagRuler == 2){
         document.getElementById('display-distance').value = simulateObject.vectLength([arrayForDistance[0],arrayForDistance[2]
             ,arrayForDistance[1],arrayForDistance[3],0 ,0]).toExponential(5);
         arrayForDistance = [];
         return;
     }
     document.getElementById('display-distance').value = "Точки не выбраны";
-    flagRuller = 1;
+    flagRuler = 1;
 }
 
 //Обработчик события поворота спина
@@ -534,14 +534,14 @@ function getSelectInd(ind){
     temp2 = simulateObject.spinDirections;
     temp = simulateObject.spinDirectionsWeb;
     var dirPos = simulateObject.spinPositions;
-    if (flagRuller == 1){
-        arrayForDistance.push(temp[ind*3], temp[ind*3+1]);
-        flagRuller ++;
+    if (flagRuler == 1){
+        arrayForDistance.push(dirPos[ind*3], dirPos[ind*3+1]);
+        flagRuler ++;
     }
-    else if (flagRuller == 2){
-        arrayForDistance.push(temp[ind*3], temp[ind*3+1]);
+    else if (flagRuler == 2){
+        arrayForDistance.push(dirPos[ind*3], dirPos[ind*3+1]);
         getDistance();
-        flagRuller = 0;
+        flagRuler = 0;
     }
     if (flagSwapSpin){
         temp [ind*3] *= -1;
