@@ -1,2 +1,2 @@
-# RestartEVA03.github.io
+# Visual Editor of Magnetic Structer
 https://restarteva03.github.io/
